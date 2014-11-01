@@ -9,7 +9,7 @@ exports.findAllTVShows = function(req, res) {
 
     console.log('GET /tvshows')
         res.status(200).jsonp(tvshows);
-    }).pretty();
+    });
 };
 
 //GET - Return a TVShow with specified ID
