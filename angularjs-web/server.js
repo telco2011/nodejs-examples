@@ -48,5 +48,5 @@ app.listen(8080, function() {
 
 // Handlers ERROR
 process.on('uncaughtException', function(err) {
-    console.log('Threw Exception: ', err);
+    console.log('Exception: ', err);
 });

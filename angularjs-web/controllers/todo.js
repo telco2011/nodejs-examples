@@ -1,5 +1,6 @@
-//File: controllers/tvshows.js
+//File: controllers/todo.js
 var mongoose = require('mongoose');
+var tools = require('../utils/tools');
 var Todo  = mongoose.model('Todo');
 
 // GET de todos los TODOs
@@ -15,11 +16,14 @@ exports.findAllTodos = function(req, res) {
 // POST que crea un TODO y devuelve todos tras la creación
 exports.addTodo = function(req, res) {				
     Todo.create({
-        text: req.body.text,
+        _id: req.body.text,
         done: false
     }, function(err, todo){
         if(err) {
-            res.send(err);
+            console.error('Error creating TODO.');
+            tools.printError(err);
+            res.send(tools.errorMessage(err.code));
+            throw err;
         }
 
         Todo.find(function(err, todos) {

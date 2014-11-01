@@ -1,5 +1,6 @@
+//File: models/todo.js
 var mongoose = require('mongoose');
 
-module.exports = mongoose.model('Todo', {
-    text: String
-});
+var schema = new mongoose.Schema({ _id: 'string' });
+
+module.exports = mongoose.model('Todo', schema);
