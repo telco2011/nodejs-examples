@@ -3,7 +3,10 @@ var express = require("express"),
     bodyParser  = require("body-parser"),
     methodOverride = require("method-override");
     mongoose = require('mongoose');
+    log4js = require('log4js');
     logger = require('morgan');
+
+var log4jsLogger = log4js.getLogger();
 
 // Conexión con la base de datos
 mongoose.connect('mongodb://localhost:27017/angular-todo');
@@ -48,5 +51,5 @@ app.listen(8080, function() {
 
 // Handlers ERROR
 process.on('uncaughtException', function(err) {
-    console.log('Exception: ', err);
+  log4jsLogger.error('Exception: ', err);
 });

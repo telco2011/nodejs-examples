@@ -20,8 +20,7 @@ exports.addTodo = function(req, res) {
         done: false
     }, function(err, todo){
         if(err) {
-            console.error('Error creating TODO.');
-            tools.printError(err);
+            tools.printError('Error creating TODO.', err);
             res.send(tools.errorMessage(err.code));
             throw err;
         }

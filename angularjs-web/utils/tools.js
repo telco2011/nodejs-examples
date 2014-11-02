@@ -1,12 +1,23 @@
 //File: utils/tools.js
+var log4js = require('log4js');
+log4js.configure({
+  appenders: [
+    { type: 'console' },
+    { type: 'file', filename: 'logs/tools.log', category: 'tools' }
+  ]
+});
+
+var logger = log4js.getLogger('tools');
+
 module.exports = {
-	printError: function (err) {
+	printError: function (msg, err) {
 	    try {
-	        console.log('[ERROR : ' + err.name + ']');
-	        console.log('[MESSAGE : ' + err.err + ']');
-	        console.log('[CODE : ' + err.code + ']');
+	    	if (msg) {
+	    		logger.error(msg);
+	    	}
+	        logger.error(err);
 	    } catch (e) {
-	        console.log(err);
+	        logger.error(e);
 	    }
 	},
 	errorMessage: function(code) {
