@@ -2,3 +2,11 @@
 angularjs-web/logs/tools.log
 
 angularjs-web/node_modules/**
+
+basic-app/node_modules/**
+
+rest-example/node_modules/**
+
+serve-static/node_modules/**
+
+web-server/node_modules/**
