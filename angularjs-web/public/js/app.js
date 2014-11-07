@@ -1,5 +1,9 @@
-var angularTodo = angular.module('angularTodo', [])
-    .controller('mainController', ['$scope', '$http', function($scope, $http) {
+var angularTodo = angular.module('angularTodo', []).factory('$exceptionHandler', function() {
+  return function(exception, cause) {
+    exception.message += ' (caused by "' + cause + '")';
+    throw exception;
+  };
+}).controller('mainController', ['$scope', '$http', function($scope, $http) {
         $scope.formData = {};
 
         // Cuando se cargue la página, pide del API todos los TODOs
@@ -22,7 +26,8 @@ var angularTodo = angular.module('angularTodo', [])
                         $scope.todos = data;
                         console.log('SUCCESS CREATE: ' + data);
                     } else {
-                        console.error(data);    
+                        console.error(data);
+                        throw data;    
                     }
                 })
                 .error(function(data) {
